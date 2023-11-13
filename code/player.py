@@ -14,6 +14,8 @@ class Player(pygame.sprite.Sprite):
         # setup
         self.image = self.animations[self.status][self.frame_index]
         self.rect = self.image.get_rect(center = pos)
+        # place player above ground but below other objects
+        self.z = LAYERS['main']
 
         # movement attr
         self.direction = pygame.math.Vector2()
