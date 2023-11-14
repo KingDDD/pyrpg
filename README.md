@@ -1,4 +1,4 @@
-![alt text](https://github.com/KingDDD/pyrpg/blob/master/graphics/iteration.gif?raw=true)
+![alt text](https://github.com/KingDDD/pyrpg/blob/master/graphics/iteration2.gif?raw=true)
 # BASIC SETUP STILL REQUIRED
 ## level interaction mode
 - ~~create character sprite~~
