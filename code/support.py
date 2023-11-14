@@ -1,7 +1,10 @@
+"""Module providing function to iterate through img files"""
 from os import walk
 import pygame
 
+
 def import_folder(path):
+    """Function the imports image assets"""
     surface_list = []
 
     for _, __, img_files in walk(path):
