@@ -10,6 +10,7 @@
 - tileset for map level (grass, dirt, water, wood cabin)
 - collisions for map level (map boundaries and for interactable objects)
 - interactable objects (trees to cut, dirt to till, plots to plant)
+- cooking and recipes
 - NPC's (merchants, story)
 
 ## Turn based battle mode
