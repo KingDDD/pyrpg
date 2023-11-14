@@ -31,7 +31,7 @@
 ## How to run
 - make setup script for ease of installation
 
-#Requirements
+# Requirements
 Python3.8 or higher required
 ```
 pip install pygame
