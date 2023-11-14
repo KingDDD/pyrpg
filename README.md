@@ -1,10 +1,10 @@
 # BASIC SETUP STILL REQUIRED
 ## level interaction mode
-- ~~~create character sprite~~~
-- ~~~create level window~~~
-- ~~~ability to move around~~~
-- ~~~tool and idle animations~~~
-- ~~~tool overlay~~~
+- ~~create character sprite~~
+- ~~create level window~~
+- ~~ability to move around~~
+- ~~tool and idle animations~~
+- ~~tool overlay~~
 - pixel art animations for all tools (Axe, Hoe, water)
 - tileset for map level (grass, dirt, water, wood cabin)
 - collisions for map level (map boundaries and for interactable objects)
