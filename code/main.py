@@ -6,7 +6,7 @@ class Game:
 	def __init__(self):
 		pygame.init()
 		self.screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
-		pygame.display.set_caption('Randuin City')
+		pygame.display.set_caption('RPG_Game_Pog')
 		self.clock = pygame.time.Clock()
 		self.level = Level()
 

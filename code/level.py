@@ -3,6 +3,7 @@ from settings import *
 from player import Player
 from overlay import Overlay
 from sprites import Generic
+from pytmx.util_pygame import load_pygame
 
 class Level:
     def __init__(self):
@@ -15,13 +16,23 @@ class Level:
         self.overlay = Overlay(self.player)
 
     def setup(self):
+        tmx_data = load_pygame('../data/level1.tmx')
+
+        # load ground level at settings in LAYERS
+        for x, y, surf in tmx_data.get_layer_by_name("base_ground_layer").tiles():
+            Generic((x * TILE_SIZE, y * TILE_SIZE),
+                     surf,
+                     self.all_sprites,
+                     LAYERS['ground']
+                     )
+
         self.player = Player((640, 360), self.all_sprites)
-        Generic(
-            pos = (0,0),
-            surf = pygame.image.load('../graphics/world/ground.png').convert_alpha(),
-            groups = self.all_sprites,
-            z = LAYERS['ground']
-            )
+        # Generic(
+        #     pos = (0,0),
+        #     surf = pygame.image.load('../data/level1.png').convert_alpha(),
+        #     groups = self.all_sprites,
+        #     z = LAYERS['ground']
+        #     )
 
     def run(self, dt):
         self.display_surface.fill('black')
