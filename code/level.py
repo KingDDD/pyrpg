@@ -26,6 +26,13 @@ class Level:
                      LAYERS['ground']
                      )
 
+        for x, y, surf in tmx_data.get_layer_by_name("house").tiles():
+            Generic((x * TILE_SIZE, y * TILE_SIZE),
+                     surf,
+                     self.all_sprites,
+                     LAYERS['house top']
+                     )
+                     
         self.player = Player((640, 360), self.all_sprites)
         # Generic(
         #     pos = (0,0),
