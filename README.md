@@ -26,3 +26,22 @@
 - world map pixel art
 - world map zoning (different zone, different monsters)
 - load zones for new areas/cities
+
+
+## How to run
+- make setup script for ease of installation
+
+#Requirements
+Python3.8 or higher required
+```
+pip install pygame
+```
+clone the repo into your working directory
+```
+git clone git@github.com:KingDDD/pyrpg.git
+```
+change directories into /code and run main.py
+```
+cd code
+python3 main.py
+```
