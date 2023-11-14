@@ -13,6 +13,7 @@
 - NPC's (merchants, story)
 
 ## Turn based battle mode
+![alt text](https://raw.githubusercontent.com/KingDDD/pyrpg/master/graphics/knight.gif?raw=true)
 - fighting sprites and animations
 - battle background and overlay
 - weapons & armor attributes
