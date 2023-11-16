@@ -25,9 +25,10 @@ LAYERS = {
 	'house bottom': 5,
 	'ground plant': 6,
 	'main': 7,
-	'house top': 8,
-	'fruit': 9,
-	'rain drops': 10
+    'trees': 8,
+	'house top': 9,
+	'fruit': 10,
+	'rain drops': 11
 }
 
 APPLE_POS = {
