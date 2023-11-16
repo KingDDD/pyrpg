@@ -16,18 +16,20 @@ class Water(Generic):
         self.frame_index = 0
 
         # sprite setup
-        super().__init__(pos = pos, surf = self.frames[self.frame_index],
+        super().__init__(pos = pos,
+                         surf = self.frames[self.frame_index],
                          groups = groups,
-                         z = LAYERS['water'])
+                         z = LAYERS['water anim'])
 
-        def animate(self, dt):
-            self.frame_index += 5 * dt
-            if self.frame_index >= len(self.frames):
-                self.frame_index = 0
-            self.image = self.frames[int(self.frame_index)]
+    def animate(self, dt):
+        self.frame_index += 5 * dt
+        if self.frame_index >= len(self.frames):
+            self.frame_index = 0
 
-        def update(self, dt):
-            self.animate(dt)
+        self.image = self.frames[int(self.frame_index)]
+
+    def update(self, dt):
+        self.animate(dt)
 
 
     # def animate(self, dt):

@@ -52,20 +52,20 @@ class Level:
                      )
 
         # load water level
-        for x, y, surf in tmx_data.get_layer_by_name("water").tiles():
-            Generic((x * TILE_SIZE, y * TILE_SIZE),
-                     surf,
-                     self.all_sprites,
-                     LAYERS['water']
-                     )
-
-        # water_frames = import_folder('../graphics/water')
         # for x, y, surf in tmx_data.get_layer_by_name("water").tiles():
-        #     Water((x * TILE_SIZE, y * TILE_SIZE),
+        #     Generic((x * TILE_SIZE, y * TILE_SIZE),
         #              surf,
         #              self.all_sprites,
         #              LAYERS['water']
         #              )
+
+        # WATER ANIMATIONS STILL NEEDED
+        water_frames = import_folder('../graphics/water')
+        for x, y, surf in tmx_data.get_layer_by_name("water").tiles():
+            Water((x * TILE_SIZE, y * TILE_SIZE),
+                     water_frames,
+                     self.all_sprites,
+                     )
 
         self.player = Player((640, 360), self.all_sprites)
         # Generic(
