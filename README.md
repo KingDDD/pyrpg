@@ -1,6 +1,10 @@
-![alt text](https://github.com/KingDDD/pyrpg/blob/master/iterations/iteration_1.webm?raw=true)
-![alt text](https://github.com/KingDDD/pyrpg/blob/master/graphics/iteration2.gif?raw=true)
-![alt text](https://github.com/KingDDD/pyrpg/blob/master/iterations/iteration_3.webm?raw=true)
+# Iteration Progress
+### Iteration 1
+![alt text](https://github.com/KingDDD/pyrpg/blob/master/iterations/iteration1.gif?raw=true)
+### Iteration 2
+![alt text](https://github.com/KingDDD/pyrpg/blob/master/iterations/iteration2.gif?raw=true)
+### Iteration 3
+![alt text](https://github.com/KingDDD/pyrpg/blob/master/iterations/iteration3.gif?raw=true)
 # BASIC SETUP STILL REQUIRED
 ## level interaction mode
 - ~~create character sprite~~
