@@ -12,8 +12,18 @@
 - ~~ability to move around~~
 - ~~tool and idle animations~~
 - ~~tool overlay~~
+- ~~walking and idle animations~~
+- ~~soil mechanics for farmable land~~
+- soil watering mechanics
+- soil planting/growing mechanics
+- ~~harvesting of tree fruit~~
+- ~~cutting down of trees~~
+- ~~basic inventory system~~
+- advanced inventory system
+- ~~new day transitions~~
 - pixel art animations for all tools (Axe, Hoe, water)
 - tileset for map level (grass, dirt, water, wood cabin)
+- ~~collisions for static placeable objects~~
 - collisions for map level (map boundaries and for interactable objects)
 - interactable objects (trees to cut, dirt to till, plots to plant)
 - cooking and recipes
