@@ -6,7 +6,12 @@ class Game:
 	def __init__(self):
 		pygame.init()
 		self.screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+		# set title
 		pygame.display.set_caption('RPG_Game_Pog')
+		# set icon
+		new_icon = pygame.image.load("../graphics/overlay/axe.png")
+		pygame.display.set_icon(new_icon)
+
 		self.clock = pygame.time.Clock()
 		self.level = Level()
 

@@ -7,33 +7,36 @@ TILE_SIZE = 128
 # overlay positions
 OVERLAY_POSITIONS = {
     'tool': (40, SCREEN_HEIGHT - 15),
-	'seed': (70, SCREEN_HEIGHT - 5)}
+	'seed': (100, SCREEN_HEIGHT - 5)}
 
 PLAYER_TOOL_OFFSET = {
-    'left': Vector2(-50,40),
-	'right': Vector2(50,40),
-	'up': Vector2(0,-10),
-	'down': Vector2(0,50)
+    'left': Vector2(-20,20),
+	'right': Vector2(20,20),
+	'up': Vector2(0,-20),
+	'down': Vector2(0,20)
 }
 
 LAYERS = {
 	'water': 0,
     'water anim': 1,
 	'ground': 2,
-	'soil': 3,
+    'soil': 3,
 	'soil water': 4,
-	'rain floor': 5,
-	'house bottom': 6,
-	'ground plant': 7,
-	'main': 8,
+	'rocks': 5,
+	'rain floor': 6,
+	'house bottom': 7,
+	'ground_plant': 8,
     'trees': 9,
-	'house top': 10,
-	'fruit': 11,
-	'rain drops': 12
+    'main': 10,
+    'ground plant front': 11,
+    'trees front': 12,
+	'house top': 13,
+	'fruit': 14,
+	'rain drops': 15
 }
 
 APPLE_POS = {
-	'Apple': [(74,80), (105,127), (138,153), (96, 88)],
+	'Apple': [(20,20), (15,50), (35,65), (84, 44), (70, 23), (64, 64)],
 	'Birch': [(30,24), (60,65), (50,50), (16,40),(45,50), (42,70)]
 }
 

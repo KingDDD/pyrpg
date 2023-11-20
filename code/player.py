@@ -4,7 +4,7 @@ from support import *
 from timer import Timer
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, group, collision_sprites, tree_sprites):
+    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer):
         super().__init__(group)
 
         self.import_assets()
@@ -14,6 +14,9 @@ class Player(pygame.sprite.Sprite):
         # setup
         self.image = self.animations[self.status][self.frame_index]
         self.rect = self.image.get_rect(center = pos)
+
+        # hitbox debug flag
+        self.debug = False
 
         # place player above ground but below other objects
         self.z = LAYERS['main']
@@ -36,7 +39,7 @@ class Player(pygame.sprite.Sprite):
             }
 
         # tools
-        self.tools = ['hoe', 'axe']
+        self.tools = ['axe', 'hoe']
         self.tool_index = 0
         self.selected_tool = self.tools[self.tool_index]
 
@@ -55,10 +58,14 @@ class Player(pygame.sprite.Sprite):
 
         # interaction
         self.tree_sprites = tree_sprites
+        self.interaction = interaction
+        self.sleep = False
+        self.travel = False
+        self.soil_layer = soil_layer
 
     def use_tool(self):
         if self.selected_tool == 'hoe':
-            print('tool use')
+            self.soil_layer.get_hit(self.target_pos)
 
         if self.selected_tool == 'axe':
             for tree in self.tree_sprites.sprites():
@@ -94,7 +101,7 @@ class Player(pygame.sprite.Sprite):
     def input(self):
         keys = pygame.key.get_pressed()
 
-        if not self.timers['tool use'].active:
+        if not self.timers['tool use'].active and not self.sleep:
             # directions
             if keys[pygame.K_UP]:
                 self.direction.y = -1
@@ -113,6 +120,12 @@ class Player(pygame.sprite.Sprite):
                 self.status = 'left'
             else:
                 self.direction.x = 0
+
+            # hold tab for hitbox debug
+            if keys[pygame.K_TAB]:
+                self.debug = True
+            if not keys[pygame.K_TAB] and self.debug:
+                self.debug = False
 
             # tool use
             if keys[pygame.K_SPACE]:
@@ -143,6 +156,20 @@ class Player(pygame.sprite.Sprite):
                 # bound for end out of tools index
                 self.seed_index = self.seed_index if self.seed_index < len(self.seeds) else 0
                 self.selected_seed = self.seeds[self.seed_index]
+
+            if keys[pygame.K_RETURN]:
+                #takes sprite, group, and do kill arguments
+                # if self collide with interact kill?
+                collided_interaction_sprite = pygame.sprite.spritecollide(self, self.interaction, False)
+                if collided_interaction_sprite:
+                    if collided_interaction_sprite[0].name == 'Trader':
+                        pass
+                    if collided_interaction_sprite[0].name == 'Home Door':
+                        self.status = 'up_idle'
+                        self.travel = True
+                    else:
+                        self.status = 'up_idle'
+                        self.sleep = True
 
     def get_status(self):
         # idle

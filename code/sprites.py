@@ -9,23 +9,40 @@ class Generic(pygame.sprite.Sprite):
         self.image = surf
         self.rect = self.image.get_rect(topleft = pos)
         self.z = z
-        self.hitbox = self.rect.copy().inflate(-self.rect.width * 0.75, -self.rect.height * 0.75)
+        self.hitbox = self.rect.copy() \
+            .inflate(-self.rect.width * 0.75, -self.rect.height * 0.75)
+
+class Interaction(Generic):
+    #invisible
+    def __init__(self, pos, size, groups, name):
+        surf = pygame.Surface(size)
+        super().__init__(pos, surf, groups)
+        self.name = name
+
+class Rock(Generic):
+    def __init__(self, pos, surf, groups, z = LAYERS['soil']):
+        super().__init__(pos, surf, groups, z)
+        self.hitbox = self.rect.copy() \
+            .inflate(-self.rect.width * 0.3, -self.rect.height * 0.7)
 
 class Water(Generic):
     def __init__(self, pos, frames, groups):
-
         #animation setup
         self.frames = frames
         self.frame_index = 0
 
         # sprite setup
-        super().__init__(pos = pos,
-                         surf = self.frames[self.frame_index],
-                         groups = groups,
-                         z = LAYERS['water anim'])
+        super().__init__(
+            pos = pos,
+            surf = self.frames[self.frame_index],
+            groups = groups,
+            z = LAYERS['water anim']
+            )
+        self.hitbox = self.rect.copy() \
+        .inflate(-self.rect.width * 0.2, -self.rect.width * 0.2)
 
     def animate(self, dt):
-        self.frame_index += 5 * dt
+        self.frame_index += 2 * dt
         if self.frame_index >= len(self.frames):
             self.frame_index = 0
 
@@ -34,15 +51,37 @@ class Water(Generic):
     def update(self, dt):
         self.animate(dt)
 
-class Invisible(Generic):
-    def __init__(self, pos, surf, groups):
-        super().__init__(pos, surf, groups)
-        self.hitbox = self.rect.copy().inflate(-self.rect.width * 0.2, -self.rect.height * 0.2)
+class Foliage(Generic):
+    # Sprite class with no hitbox
+    def __init__(self, pos, surf, groups, z):
+        super().__init__(pos, surf, groups, z)
 
-class Mushroom(Generic):
-    def __init__(self, pos, surf, groups):
-        super().__init__(pos, surf, groups)
-        self.hitbox = self.rect.copy().inflate(-self.rect.width * 0.5,-self.rect.height * 0.7)
+class Bush(Generic):
+    def __init__(self, pos, surf, groups, z):
+        super().__init__(pos, surf, groups, z)
+
+        # offset bush hitbox for correct depth placement per draw
+        self.offset = pygame.math.Vector2(0,20)
+        self.hitbox = self.rect.copy() \
+            .inflate(-self.rect.width * 0.5,-self.rect.height * 0.9) \
+            .move(self.offset)
+
+class Building(Generic):
+    def __init__(self, pos, surf, groups, z):
+        super().__init__(pos, surf, groups, z)
+        self.offset = pygame.math.Vector2(0,20)
+        self.hitbox = self.rect.copy() \
+            .inflate(-self.rect.width * 0.45, -self.rect.height * 0.8) \
+            .move(self.offset)
+
+class Fence(Generic):
+    def __init__(self, pos, surf, groups, z = LAYERS['main']):
+        super().__init__(pos, surf, groups, z)
+        self.image = surf
+        self.rect = self.image.get_rect(topleft = pos)
+        self.z = z
+        self.hitbox = self.rect.copy() \
+            .inflate(-self.rect.width * 0.4, -self.rect.height * 0.7)
 
 class Particle(Generic):
     def __init__(self, pos, surf, groups, z, duration = 200):
@@ -62,15 +101,23 @@ class Particle(Generic):
             self.kill()
 
 class Tree(Generic):
-    def __init__(self, pos, surf, groups, name, player_add):
-        super().__init__(pos, surf, groups)
+    def __init__(
+        self, pos, surf, groups, name,
+        player_add, z = LAYERS["main"]
+        ):
+        super().__init__(pos, surf, groups, z)
         self.offset = pygame.math.Vector2()
-        self.hitbox = self.rect.copy().inflate(-self.rect.width * 0.6, -self.rect.height * 0.45)
+        self.hitbox = self.rect.copy() \
+            .inflate(-self.rect.width * 0.6, -self.rect.height * 0.45)
 
         # tree attributes
         self.health = 5
         self.alive = True
-        stump_path = f"../graphics/stumps/{'ash' if name == 'Apple' else 'birch'}.png"
+        if name is not None:
+            stump = 'ash' if name == 'Apple' else 'birch'
+        else:
+            stump = 'birch'
+        stump_path = f"../graphics/stumps/{stump}.png"
         self.stump_surf = pygame.image.load(stump_path).convert_alpha()
         self.invul_timer  = Timer(200)
 
@@ -89,25 +136,36 @@ class Tree(Generic):
         if len(self.apple_sprites.sprites()) > 0:
             random_apple = choice(self.apple_sprites.sprites())
             Particle(
-                     pos = random_apple.rect.topleft,
-                     surf = random_apple.image,
-                     groups = self.groups()[0],
-                     z = LAYERS['fruit'])
+                pos = random_apple.rect.topleft,
+                surf = random_apple.image,
+                groups = self.groups()[0],
+                z = LAYERS['fruit'])
+
             self.player_add('apple')
             random_apple.kill()
 
-    def check_death(self):
+    def check_tree_death(self):
         if self.health <= 0:
-            Particle(self.rect.topleft, self.image, self.groups()[0], LAYERS['fruit'], 300)
+            Particle(
+                pos = self.rect.topleft,
+                surf = self.image,
+                groups = self.groups()[0],
+                z = LAYERS['fruit'],
+                duration = 300)
+
             self.image = self.stump_surf
             self.rect = self.image.get_rect(midbottom = self.rect.midbottom)
-            self.hitbox = self.rect.copy().inflate(-self.rect.width * 0.5, -self.rect.height * 0.99)
+            self.offset = pygame.math.Vector2(0,20)
+            self.hitbox = self.rect.copy() \
+                .inflate(-self.rect.width * 0.6, -self.rect.height * 0.9) \
+                .move(self.offset)
+
             self.alive = False
             self.player_add('wood')
 
     def update(self, dt):
         if self.alive:
-            self.check_death()
+            self.check_tree_death()
 
     def create_fruit(self):
         for pos in self.apple_pos:
