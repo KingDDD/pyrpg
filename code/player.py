@@ -4,7 +4,7 @@ from support import *
 from timer import Timer
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer):
+    def __init__(self, pos, group, collision_sprites, tree_sprites, peach_tree_sprites, interaction, soil_layer):
         super().__init__(group)
 
         self.import_assets()
@@ -52,12 +52,14 @@ class Player(pygame.sprite.Sprite):
         self.item_inventory = {
             'wood': 0,
             'apple': 0,
+            'peach': 0,
             'corn': 0,
             'tomato': 0
         }
 
         # interaction
         self.tree_sprites = tree_sprites
+        self.peach_tree_sprites = peach_tree_sprites
         self.interaction = interaction
         self.sleep = False
         self.travel = False
@@ -69,6 +71,9 @@ class Player(pygame.sprite.Sprite):
 
         if self.selected_tool == 'axe':
             for tree in self.tree_sprites.sprites():
+                if tree.rect.collidepoint(self.target_pos):
+                    tree.damage()
+            for tree in self.peach_tree_sprites.sprites():
                 if tree.rect.collidepoint(self.target_pos):
                     tree.damage()
 

@@ -2,7 +2,7 @@ import pygame
 from settings import *
 from player import Player
 from overlay import Overlay
-from sprites import Generic, Water, Foliage, Tree, Rock, Bush, Building, Fence, Interaction
+from sprites import Generic, Water, Foliage, Tree, Rock, Bush, Building, Fence, Interaction, PeachTree
 from pytmx.util_pygame import load_pygame
 from support import *
 from transition import Transition
@@ -18,6 +18,7 @@ class Level:
         self.all_sprites = CameraGroup()
         self.collision_sprites = pygame.sprite.Group()
         self.tree_sprites = pygame.sprite.Group()
+        self.peach_tree_sprites = pygame.sprite.Group()
         self.interaction_sprites = pygame.sprite.Group()
 
         self.soil_layer = SoilLayer(self.all_sprites)
@@ -66,12 +67,22 @@ class Level:
                  z = LAYERS['main']
                  )
 
-        # Large Interactable Trees
+        # Apple Trees
         for obj in tmx_data.get_layer_by_name("Trees"):
             Tree(
                  pos = (obj.x, obj.y),
                  surf = obj.image,
                  groups = [self.all_sprites, self.collision_sprites, self.tree_sprites],
+                 name = obj.name,
+                 player_add = self.player_add
+                 )
+
+        # Peach Trees
+        for obj in tmx_data.get_layer_by_name("PeachTrees"):
+            PeachTree(
+                 pos = (obj.x, obj.y),
+                 surf = obj.image,
+                 groups = [self.all_sprites, self.collision_sprites, self.peach_tree_sprites],
                  name = obj.name,
                  player_add = self.player_add
                  )
@@ -118,6 +129,7 @@ class Level:
                     group = self.all_sprites,
                     collision_sprites = self.collision_sprites,
                     tree_sprites = self.tree_sprites,
+                    peach_tree_sprites = self.peach_tree_sprites,
                     interaction = self.interaction_sprites,
                     soil_layer = self.soil_layer)
 
@@ -139,8 +151,12 @@ class Level:
             #get rid of hanging apples
             for apple in tree.apple_sprites.sprites():
                 apple.kill()
-            # generate new apples
             tree.create_fruit()
+        for tree in self.peach_tree_sprites.sprites():
+            for peach in tree.peach_sprites.sprites():
+                peach.kill()
+            # generate new apples
+            tree.create_peach()
 
     def change_map(self):
         self.map_data = load_pygame('../data/test_small.tmx')

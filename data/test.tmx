@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="35" height="32" tilewidth="128" tileheight="128" infinite="0" nextlayerid="18" nextobjectid="482">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="35" height="32" tilewidth="128" tileheight="128" infinite="0" nextlayerid="19" nextobjectid="485">
  <tileset firstgid="1" name="grass" tilewidth="128" tileheight="128" tilecount="9" columns="3">
   <image source="../graphics/tilesets/grass.png" width="384" height="384"/>
  </tileset>
@@ -80,6 +80,9 @@
  </tileset>
  <tileset firstgid="67" name="tree_shadow" tilewidth="128" tileheight="128" tilecount="1" columns="1">
   <image source="../graphics/tilesets/tree_shadow.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="68" name="peachtree" tilewidth="128" tileheight="128" tilecount="1" columns="1">
+  <image source="../graphics/tilesets/peachtree.png" width="128" height="128"/>
  </tileset>
  <layer id="10" name="Water" width="35" height="32">
   <data encoding="csv">
@@ -602,6 +605,10 @@
   <object id="182" name="Apple" gid="20" x="292" y="1554" width="128" height="128"/>
   <object id="479" name="Apple" gid="67" x="660" y="1529" width="128" height="128"/>
   <object id="480" name="Apple" gid="67" x="848" y="965" width="128" height="128"/>
+ </objectgroup>
+ <objectgroup id="18" name="PeachTrees">
+  <object id="482" name="Peach" gid="68" x="433.333" y="924" width="128" height="128"/>
+  <object id="483" name="Peach" gid="68" x="737.333" y="969.333" width="128" height="128"/>
  </objectgroup>
  <objectgroup id="9" name="Building">
   <object id="196" gid="21" x="277" y="385.5" width="128" height="128"/>
