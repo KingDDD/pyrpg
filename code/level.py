@@ -7,6 +7,8 @@ from pytmx.util_pygame import load_pygame
 from support import *
 from transition import Transition
 from soil import SoilLayer
+from sky import Rain
+from random import randint
 
 
 class Level:
@@ -27,6 +29,10 @@ class Level:
         self.overlay = Overlay(self.player)
         self.transition = Transition(self.reset, self.player)
 
+        # sky
+        self.rain = Rain(self.all_sprites)
+        self.raining = randint(0, 10) > 5
+        self.soil_layer.raining = self.raining
 
     def setup(self):
         tmx_data = load_pygame('../data/test.tmx')
@@ -114,13 +120,6 @@ class Level:
                  z = LAYERS["main"]
                  )
 
-        # collision tiles
-        # for x, y, surf in tmx_data.get_layer_by_name('Collision').tiles():
-        #     Generic((x * TILE_SIZE, y * TILE_SIZE),
-        #              pygame.Surface((TILE_SIZE, TILE_SIZE)),
-        #              self.collision_sprites,
-        #              LAYERS['main'])
-
         # PLAYER
         for obj in tmx_data.get_layer_by_name('Player'):
             if obj.name == 'Start':
@@ -146,6 +145,17 @@ class Level:
         print(self.player.item_inventory)
 
     def reset(self):
+        # plants
+        self.soil_layer.update_plants()
+
+        # soil
+        self.soil_layer.remove_water()
+        # randomize rain
+        self.raining = randint(0, 10) > 5
+        self.soil_layer.raining = self.raining
+        if self.raining:
+            self.soil_layer.water_all()
+
         # apples on trees
         for tree in self.tree_sprites.sprites():
             #get rid of hanging apples
@@ -170,6 +180,10 @@ class Level:
         self.all_sprites.update(dt)
         # draw tool/seed overlay
         self.overlay.display()
+
+        # rain
+        if self.raining:
+            self.rain.update()
 
         # check if player wants to sleep
         if self.player.sleep:

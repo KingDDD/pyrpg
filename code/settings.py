@@ -23,7 +23,7 @@ LAYERS = {
     'soil': 3,
 	'soil water': 4,
 	'rocks': 5,
-	'rain floor': 6,
+	'rain_floor': 6,
 	'house bottom': 7,
 	'ground_plant': 8,
     'trees': 9,
@@ -32,7 +32,7 @@ LAYERS = {
     'trees front': 12,
 	'house top': 13,
 	'fruit': 14,
-	'rain drops': 15
+	'rain_drops': 15
 }
 
 FRUIT_POS = {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="35" height="32" tilewidth="128" tileheight="128" infinite="0" nextlayerid="19" nextobjectid="485">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="35" height="32" tilewidth="128" tileheight="128" infinite="0" nextlayerid="19" nextobjectid="536">
  <tileset firstgid="1" name="grass" tilewidth="128" tileheight="128" tilecount="9" columns="3">
   <image source="../graphics/tilesets/grass.png" width="384" height="384"/>
  </tileset>
@@ -83,6 +83,15 @@
  </tileset>
  <tileset firstgid="68" name="peachtree" tilewidth="128" tileheight="128" tilecount="1" columns="1">
   <image source="../graphics/tilesets/peachtree.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="69" name="triangletree" tilewidth="128" tileheight="128" tilecount="1" columns="1">
+  <image source="../graphics/tilesets/triangletree.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="70" name="3tiertree" tilewidth="128" tileheight="128" tilecount="1" columns="1">
+  <image source="../graphics/tilesets/3tiertree.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="71" name="squarebush_outlined" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="../graphics/tilesets/squarebush_outlined.png" width="64" height="64"/>
  </tileset>
  <layer id="10" name="Water" width="35" height="32">
   <data encoding="csv">
@@ -596,6 +605,55 @@
   <object id="191" gid="19" x="293.333" y="1358" width="128" height="128"/>
   <object id="192" gid="19" x="222" y="1376" width="128" height="128"/>
   <object id="193" gid="19" x="442" y="1357.33" width="128" height="128"/>
+  <object id="487" gid="69" x="634.667" y="1040.67" width="128" height="128"/>
+  <object id="488" gid="69" x="162" y="1700.67" width="128" height="128"/>
+  <object id="489" gid="69" x="448.667" y="1708" width="128" height="128"/>
+  <object id="490" gid="69" x="714" y="1704.67" width="128" height="128"/>
+  <object id="491" gid="69" x="235.333" y="1704.67" width="128" height="128"/>
+  <object id="492" gid="69" x="200" y="1691.33" width="128" height="128"/>
+  <object id="493" gid="69" x="95.3333" y="1714.67" width="128" height="128"/>
+  <object id="494" gid="69" x="128.667" y="1748" width="128" height="128"/>
+  <object id="495" gid="69" x="190.667" y="1748" width="128" height="128"/>
+  <object id="496" gid="69" x="255.333" y="1764" width="128" height="128"/>
+  <object id="497" gid="70" x="408" y="1036.67" width="128" height="128"/>
+  <object id="498" gid="70" x="51.3333" y="1894.67" width="128" height="128"/>
+  <object id="499" gid="70" x="84.6667" y="1930.67" width="128" height="128"/>
+  <object id="500" gid="70" x="126.667" y="1904.67" width="128" height="128"/>
+  <object id="501" gid="70" x="146.667" y="1890.67" width="128" height="128"/>
+  <object id="502" gid="70" x="173.333" y="1927.33" width="128" height="128"/>
+  <object id="503" gid="70" x="178" y="1932.67" width="128" height="128"/>
+  <object id="504" gid="70" x="236.667" y="1904.67" width="128" height="128"/>
+  <object id="505" gid="70" x="240" y="1917.33" width="128" height="128"/>
+  <object id="506" gid="70" x="431.333" y="1924.67" width="128" height="128"/>
+  <object id="507" gid="70" x="708" y="1924.67" width="128" height="128"/>
+  <object id="508" gid="71" x="1100" y="769" width="64" height="64"/>
+  <object id="509" gid="71" x="1150" y="769" width="64" height="64"/>
+  <object id="510" gid="71" x="1175" y="767" width="64" height="64"/>
+  <object id="511" gid="71" x="1222" y="776" width="64" height="64"/>
+  <object id="512" gid="71" x="1302" y="767" width="64" height="64"/>
+  <object id="513" gid="71" x="1245" y="764" width="64" height="64"/>
+  <object id="514" gid="71" x="1333" y="757" width="64" height="64"/>
+  <object id="515" gid="71" x="1405" y="759" width="64" height="64"/>
+  <object id="516" gid="71" x="1368" y="757" width="64" height="64"/>
+  <object id="517" gid="71" x="1477" y="754" width="64" height="64"/>
+  <object id="518" gid="71" x="1560" y="764" width="64" height="64"/>
+  <object id="519" gid="71" x="1440" y="759" width="64" height="64"/>
+  <object id="520" gid="71" x="110" y="2093" width="64" height="64"/>
+  <object id="521" gid="71" x="115" y="2093" width="64" height="64"/>
+  <object id="522" gid="71" x="170" y="2086" width="64" height="64"/>
+  <object id="523" gid="71" x="182" y="2086" width="64" height="64"/>
+  <object id="524" gid="71" x="250" y="2108" width="64" height="64"/>
+  <object id="525" gid="71" x="248" y="2110" width="64" height="64"/>
+  <object id="526" gid="71" x="203" y="2118" width="64" height="64"/>
+  <object id="527" gid="71" x="133" y="2118" width="64" height="64"/>
+  <object id="528" gid="71" x="68" y="2123" width="64" height="64"/>
+  <object id="529" gid="71" x="82" y="2150" width="64" height="64"/>
+  <object id="530" gid="71" x="127" y="2158" width="64" height="64"/>
+  <object id="531" gid="71" x="182" y="2168" width="64" height="64"/>
+  <object id="532" gid="71" x="247" y="2161" width="64" height="64"/>
+  <object id="533" gid="71" x="270" y="2153" width="64" height="64"/>
+  <object id="534" gid="71" x="473" y="2093" width="64" height="64"/>
+  <object id="535" gid="71" x="755" y="2068" width="64" height="64"/>
  </objectgroup>
  <objectgroup id="6" name="Trees">
   <object id="178" name="Apple" gid="20" x="256" y="1531.33" width="128" height="128"/>

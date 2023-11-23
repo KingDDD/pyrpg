@@ -39,7 +39,7 @@ class Player(pygame.sprite.Sprite):
             }
 
         # tools
-        self.tools = ['axe', 'hoe']
+        self.tools = ['axe', 'hoe', 'water']
         self.tool_index = 0
         self.selected_tool = self.tools[self.tool_index]
 
@@ -78,19 +78,20 @@ class Player(pygame.sprite.Sprite):
                     tree.damage()
 
         if self.selected_tool == 'water':
-            pass
+            self.soil_layer.water(self.target_pos)
 
     def get_target_pos(self):
         self.target_pos = self.rect.center + PLAYER_TOOL_OFFSET[self.status.split('_')[0]]
 
     def use_seed(self):
-        pass
+        self.soil_layer.plant_seed(self.target_pos, self.selected_seed)
 
     def import_assets(self):
         self.animations = {'up': [], 'down': [], 'left': [], 'right': [],
                             'up_idle': [], 'down_idle': [], 'left_idle': [], 'right_idle': [],
                             'up_axe': [], 'down_axe': [], 'left_axe': [], 'right_axe': [],
-                            'up_hoe': [], 'down_hoe': [], 'left_hoe': [], 'right_hoe': []}
+                            'up_hoe': [], 'down_hoe': [], 'left_hoe': [], 'right_hoe': [],
+                            'up_water': [], 'down_water': [], 'left_water': [], 'right_water': []}
 
         for animation in self.animations.keys():
             full_path = '../graphics/character/' + animation
