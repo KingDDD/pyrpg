@@ -2,14 +2,14 @@ import pygame
 from settings import *
 from player import Player
 from overlay import Overlay
-from sprites import Generic, Water, Foliage, Tree, Rock, Bush, Building, Fence, Interaction, PeachTree
+from sprites import Generic, Water, Foliage, Tree, Rock, Bush, Building, Fence, Interaction, PeachTree, Particle
 from pytmx.util_pygame import load_pygame
 from support import *
 from transition import Transition
 from soil import SoilLayer
-from sky import Rain
+from sky import Rain, Sky
 from random import randint
-
+from menu import Menu
 
 class Level:
     def __init__(self):
@@ -33,6 +33,11 @@ class Level:
         self.rain = Rain(self.all_sprites)
         self.raining = randint(0, 10) > 5
         self.soil_layer.raining = self.raining
+        self.sky = Sky()
+
+        # shop
+        self.menu = Menu(self.player, self.toggle_shop)
+        self.shop_active = False
 
     def setup(self):
         tmx_data = load_pygame('../data/test.tmx')
@@ -130,10 +135,14 @@ class Level:
                     tree_sprites = self.tree_sprites,
                     peach_tree_sprites = self.peach_tree_sprites,
                     interaction = self.interaction_sprites,
-                    soil_layer = self.soil_layer)
+                    soil_layer = self.soil_layer,
+                    toggle_shop = self.toggle_shop)
 
             # sleep
             if obj.name == 'House':
+                Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+            # trader
+            if obj.name == 'Trader':
                 Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
             # enter house
             if obj.name == 'Home Door':
@@ -143,6 +152,9 @@ class Level:
     def player_add(self, item):
         self.player.item_inventory[item] += 1
         print(self.player.item_inventory)
+
+    def toggle_shop(self):
+        self.shop_active = not self.shop_active
 
     def reset(self):
         # plants
@@ -168,6 +180,25 @@ class Level:
             # generate new apples
             tree.create_peach()
 
+        # Sky
+        self.sky.start_color = [255,255,255]
+
+    def plant_collision(self):
+        # if plants
+        if self.soil_layer.plant_sprites:
+            for plant in self.soil_layer.plant_sprites.sprites():
+                if plant.harvestable and plant.rect.colliderect(self.player.hitbox):
+                    # add to inventory
+                    self.player_add(plant.plant_type)
+                    plant.kill()
+                    Particle(
+                        pos = plant.rect.topleft,
+                        surf = plant.image,
+                        groups = self.all_sprites,
+                        z = LAYERS['main']
+                        )
+                    self.soil_layer.grid[plant.rect.centery // TILE_SIZE][plant.rect.centerx // TILE_SIZE].remove('P')
+
     def change_map(self):
         self.map_data = load_pygame('../data/test_small.tmx')
 
@@ -176,20 +207,32 @@ class Level:
         self.display_surface.fill('black')
         # draw sprites in new positions for the next update() call
         self.all_sprites.custom_draw(self.player, self.collision_sprites)
+
         # update frame with newly drawn sprite positions
-        self.all_sprites.update(dt)
+        if self.shop_active:
+            self.menu.update()
+        else:
+            self.all_sprites.update(dt)
+            self.plant_collision()
+
         # draw tool/seed overlay
         self.overlay.display()
 
         # rain
-        if self.raining:
+        if self.raining and not self.shop_active:
             self.rain.update()
+
+        # day to night
+        self.sky.display(dt)
 
         # check if player wants to sleep
         if self.player.sleep:
             self.transition.play_sleep()
+        #print(self.player.item_inventory)
         if self.player.travel:
             self.transition.play_travel()
+
+        #print(self.shop_active)
 
 class CameraGroup(pygame.sprite.Group):
     """
