@@ -1,5 +1,5 @@
 import pygame
-from settings import *
+from settings import SCREEN_WIDTH, SCREEN_HEIGHT, LAYERS
 from support import import_folder
 from sprites import Generic
 from random import randint, choice
@@ -11,7 +11,6 @@ class Sky:
         self.full_surf = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
         self.start_color = [255,255,255]
         self.end_color = (31,101,189)
-
 
     def display(self, dt):
         for index, value in enumerate(self.end_color):

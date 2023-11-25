@@ -1,8 +1,10 @@
 import pygame
-from settings import *
+from settings import (LAYERS, TILE_SIZE, PLAYER_TOOL_OFFSET,
+                      SCREEN_WIDTH, SCREEN_HEIGHT)
 from player import Player
 from overlay import Overlay
-from sprites import Generic, Water, Foliage, Tree, Rock, Bush, Building, Fence, Interaction, PeachTree, Particle
+from sprites import (Generic, Water, Foliage, Tree, Rock, Bush,
+                     Building, Fence, Interaction, PeachTree, Particle)
 from pytmx.util_pygame import load_pygame
 from support import *
 from transition import Transition

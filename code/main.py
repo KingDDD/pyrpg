@@ -1,12 +1,14 @@
-import pygame, sys
+import pygame
+import sys
 from settings import SCREEN_WIDTH, SCREEN_HEIGHT
 from level import Level
 from button import Button
 
+
 class Game:
 	def __init__(self):
 		pygame.init()
-		self.screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+		self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 		# set title
 		pygame.display.set_caption('RPG_Game_Pog')
 		# set icon
@@ -21,7 +23,7 @@ class Game:
 		self.level = Level()
 
 	def intro(self):
-		self.screen.fill((140,140,220))
+		self.screen.fill((140, 140, 220))
 		text = self.font.render("Press PLAY to start", True, 'White')
 		text_rect = text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
 		self.screen.blit(text, text_rect)
@@ -65,6 +67,7 @@ class Game:
 				dt = self.clock.tick() / 1000
 				self.level.run(dt)
 				pygame.display.update()
+
 
 if __name__ == '__main__':
 	# Game Init
