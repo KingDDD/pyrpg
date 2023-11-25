@@ -54,6 +54,6 @@ SALE_PRICES = {
 	'tomato': 20
 }
 PURCHASE_PRICES = {
-	'corn': 4,
+	'corn': 2,
 	'tomato': 5
 }

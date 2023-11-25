@@ -50,17 +50,17 @@ class Player(pygame.sprite.Sprite):
 
         # inventory
         self.item_inventory = {
-            'wood': 19,
-            'apple': 19,
-            'peach': 1,
-            'corn': 22,
-            'tomato': 4
+            'wood': 0,
+            'apple': 0,
+            'peach': 0,
+            'corn': 0,
+            'tomato': 0
         }
 
         # seed inventory
         self.seed_inventory = {
-            'corn': 5,
-            'tomato': 5
+            'corn': 6,
+            'tomato': 0
             }
         self.money = 200
 
@@ -175,7 +175,7 @@ class Player(pygame.sprite.Sprite):
                 self.selected_seed = self.seeds[self.seed_index]
 
             if keys[pygame.K_RETURN]:
-                self.toggle_shop()
+                #self.toggle_shop()
                 #takes sprite, group, and do kill arguments
                 # if self collide with interact kill?
                 collided_interaction_sprite = pygame.sprite.spritecollide(self, self.interaction, False)
