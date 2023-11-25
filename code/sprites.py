@@ -169,7 +169,7 @@ class Tree(Generic):
 
     def create_fruit(self):
         for pos in self.apple_pos:
-            if randint(0,10) < 2:
+            if randint(0,10) < 11:
                 x = pos[0] + self.rect.left
                 y = pos[1] + self.rect.top
                 Generic(
@@ -247,7 +247,7 @@ class PeachTree(Generic):
 
     def create_peach(self):
         for pos in self.peach_pos:
-            if randint(0,10) < 2:
+            if randint(0,10) < 11:
                 x = pos[0] + self.rect.left
                 y = pos[1] + self.rect.top
                 Generic(
