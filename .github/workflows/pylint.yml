@@ -25,7 +25,7 @@ jobs:
 
       - name: Run Pylint
         run: |
-          pylint --output-format=parseable your_module_or_package > pylint_report.txt
+          pylint --output-format=parseable code > pylint_report.txt
 
       - name: Upload Pylint report
         uses: actions/upload-artifact@v2
