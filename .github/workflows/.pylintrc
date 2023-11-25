@@ -1,0 +1,34 @@
+name: Pylint
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to your main branch
+
+jobs:
+  pylint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8.10  # Specify your Python version
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pylint==2.4.4
+
+      - name: Run Pylint
+        run: |
+          pylint --output-format=parseable your_module_or_package > pylint_report.txt
+
+      - name: Upload Pylint report
+        uses: actions/upload-artifact@v2
+        with:
+          name: pylint-report
+          path: pylint_report.txt
