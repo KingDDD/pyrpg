@@ -30,8 +30,9 @@ class Game:
 		start_img = pygame.image.load('../graphics/buttons/play.png').convert_alpha()
 		exit_img = pygame.image.load('../graphics/buttons/quit.png').convert_alpha()
 		button_scaling = 3
-		start_button = Button(SCREEN_WIDTH//2 - (button_scaling*32), 200, start_img, button_scaling)
-		exit_button = Button(SCREEN_WIDTH//2 - (button_scaling*32), 400, exit_img, button_scaling)
+		button_x = SCREEN_WIDTH//2 - (button_scaling*32)
+		start_button = Button(button_x, 200, start_img, button_scaling)
+		exit_button = Button(button_x, 400, exit_img, button_scaling)
 
 		# intro button interactions
 		if start_button.draw(self.screen):
