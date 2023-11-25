@@ -35,13 +35,11 @@ class Game:
 				self.play_flag = True
 				self.intro_flag = False
 
-
 	def run(self):
 		while True:
 			if self.intro_flag:
 				self.intro()
 			elif self.play_flag:
-
 				for event in pygame.event.get():
 					if event.type == pygame.QUIT:
 						pygame.quit()
@@ -55,5 +53,4 @@ if __name__ == '__main__':
 	# Game Init
 	game = Game()
 	# Game Loop
-	#game.intro()
 	game.run()
