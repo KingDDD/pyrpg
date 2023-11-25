@@ -46,4 +46,7 @@ class Button:
         return action
 
     def animate(self):
+        """
+        This method will animate the button presses and animate transitions
+        """
         pass

@@ -1,12 +1,21 @@
-import pygame
+"""
+This module is the main runpoint for the game
+"""
 import sys
+import pygame
 from settings import SCREEN_WIDTH, SCREEN_HEIGHT
 from level import Level
 from button import Button
 
 
 class Game:
+	"""
+	This class contains the game loop and intro logic.
+	"""
 	def __init__(self):
+		"""
+		This method initializes screen size, game clock, fonts, and game level
+		"""
 		pygame.init()
 		self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 		# set title
@@ -23,6 +32,9 @@ class Game:
 		self.level = Level()
 
 	def intro(self):
+		"""
+		This method plays the intro screen and draws the interaction buttons
+		"""
 		self.screen.fill((140, 140, 220))
 		text = self.font.render("Press PLAY to start", True, 'White')
 		text_rect = text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
@@ -52,6 +64,9 @@ class Game:
 				sys.exit()
 
 	def run(self):
+		"""
+		This method runs the game loop and registers quit out events
+		"""
 		while True:
 			# intro call
 			if self.intro_flag:
