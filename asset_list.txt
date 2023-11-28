@@ -1,0 +1,86 @@
+all directions of Main Character
+All directions idle
+all directions axe usage
+all directions hoe usage
+all directions water usage
+Trader npc model
+trader npc idle
+corn plant stages
+corn husk
+corn seeds
+tomato plant stages
+tomato
+tomato seeds
+wheat plant stages
+wheat
+wheat seeds
+pumpkin plant stages
+pumpkin
+pumpkin seeds
+sugarcane plant stages
+sugarcane
+sugarcane seeds
+eggplant plant stages
+eggplant
+eggplant seeds
+onion plant stages
+onion
+onion seeds
+apple trees
+apples
+peach trees
+peaches
+banana trees
+bananas
+walnut trees
+walnuts
+hazelnut trees
+hazelnut
+mango trees
+mango
+coconut trees
+coconut
+orange trees
+oranges
+farmhouse all 4 angles
+well
+fence
+npc's male and female all classes
+portrait art for npc's with dialogue
+turn based battle framing
+tbb main character sprite
+tbb main character attack
+tbb main character defend
+tbb main character on-hit
+tbb fight options menu
+tbb main character downed
+tbb main character healed
+tbb main character buffed
+bed
+nightstand
+stool
+chair
+counter
+sink
+fireplace
+rug
+table
+pillow
+wall clock
+bookshelf
+cooking stove
+pot/pan
+baking oven
+cooking animation particle effects
+pizza
+bread
+cheese
+sliced apple
+sliced orange
+shredded corn
+*other recipes*
+Eldritch Entity NPC sprite
+Eldritch Entity NPC dialogue portrait
+fireball effect
+tbb main character fireball attack
+
